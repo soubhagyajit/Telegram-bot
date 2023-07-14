@@ -6,8 +6,8 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 import openai
 
-bot_token = 'YOUR TOKEN '
-openai_api_key = 'YOUR KEY'
+bot_token = 'YOUR_BOT_TOKEN '
+openai_api_key = 'YOUR_OPENAI_API_KEY'
 
 with open("chat.txt", "r") as f:
     chat = f.read()

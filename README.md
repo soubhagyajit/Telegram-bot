@@ -7,8 +7,8 @@ This is a simple Telegram chatbot made using Python. The chatbot utilizes the Op
 To run this Telegram chatbot, you need to have the following prerequisites installed:
 
 - Python 3.6 or higher
-- python-telegram-bot library (`pip install python-telegram-bot`)
-- OpenAI library (`pip install openai`)
+- python-telegram-bot library (`pip install python-telegram-bot==13.7`)
+- OpenAI library (`pip install openai==0.28`)
 
 You also need to obtain an API key from OpenAI. You can sign up for an API key on the OpenAI website.
 
@@ -16,10 +16,9 @@ You also need to obtain an API key from OpenAI. You can sign up for an API key o
 
 1. Clone the repository to your local machine or download the source code.
 2. Install the required dependencies as mentioned in the prerequisites section.
-3. Replace `YOUR_BOT_TOKEN` in the `telegram_bot.py` file with your actual Bot token that is given by the @Bot_father in telegram key.
-4. Replace `YOUR_OPENAI_API_KEY` in the `telegram_bot.py` file with your actual OpenAI API key.
-5. Run the `telegram_bot.py` file using the command `python telegram_bot.py`.
-6. Find your bot on Telegram and start chatting!
+3. Replace `YOUR_OPENAI_API_KEY` in the `telegram_bot.py` file with your actual OpenAI API key.
+4. Run the `telegram_bot.py` file using the command `python telegram_bot.py`.
+5. Find your bot on Telegram and start chatting!
 
 ## Usage
 

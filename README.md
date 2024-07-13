@@ -9,6 +9,7 @@ To run this Telegram chatbot, you need to have the following prerequisites insta
 - Python 3.6 or higher
 - python-telegram-bot library (`pip install python-telegram-bot==13.7`)
 - OpenAI library (`pip install openai==0.28`)
+- ulrlib version 1.26.15 (`pip install urllib3==1.26.15`)
 
 You also need to obtain an API key from OpenAI. You can sign up for an API key on the OpenAI website.
 

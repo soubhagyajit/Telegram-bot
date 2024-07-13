@@ -1,19 +1,18 @@
 # Author : Soubhagyajit Borah
-# More about this project : www.sjbtechcenter.online
+# More about this project : www.soubhagyajit.com
 
 import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from openai import OpenAI
 
-import openai
-
-bot_token = 'YOUR_BOT_TOKEN '
-openai_api_key = 'YOUR_OPENAI_API_KEY'
+bot_token = 'YOUR_TOKEN' 
+openai_api_key = 'YOUR_KEY'
 
 with open("chat.txt", "r") as f:
     chat = f.read()
 
 bot = telegram.Bot(token=bot_token)
-openai.api_key = openai_api_key
+client = OpenAI(api_key=openai_api_key)
 
 def help_command(update, context):
     chat_id = update.message.chat_id
@@ -30,13 +29,13 @@ def name_command(update, context):
 def desc_command(update, context):
     chat_id = update.message.chat_id
 
-    desc_message = "Bot Name: Soubhagyajit\nA chat bot created by Soubhagyajit Borah. Using OpenAI API for conversation and chatting."
+    desc_message = "Bot Name: Soubhagyajit\nA chat bot created by Soubhagyajit Borah. Using OpenAI API for conversation and chatting.\nFor more information visit: www.soubhagyajit.com"
     bot.send_message(chat_id=chat_id, text=desc_message)
 
 def website_command(update, context):
     chat_id = update.message.chat_id
 
-    website_message = "Website: https://sjbtechcenter.online"
+    website_message = "Website: https://www.soubhagyajit.com"
     bot.send_message(chat_id=chat_id, text=website_message)
 
 def contact_command(update, context):
@@ -64,16 +63,24 @@ def handle_message(update, context):
 
     if update.message.chat.type == 'private':
         # Process the message for individual chat
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=f"{chat}\n Soubhagyajit:",
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"Soubhagyajit Bot : {message}"
+                }
+            ],
             temperature=1,
-            max_tokens=2560,
+            max_tokens=256,
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0
         )
-        message_to_send = response.choices[0].text
+        message_to_send = response.choices[0].message.content
+
+
+
 
         print("\n",update.message.chat.type, chat_id, " : ", first_name, " : ", message, "\n")
 
@@ -83,16 +90,25 @@ def handle_message(update, context):
     elif update.message.chat.type == 'group':
         # Check if the bot is mentioned in the message
         if bot.username.lower() in message.lower():
-            response = openai.Completion.create(
-                model="text-davinci-003",
-                prompt=chat,
-                temperature=1,
-                max_tokens=2560,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0
-            )
-            message_to_send = response.choices[0].text
+            response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "user",
+                    "content": message
+                }
+            ],
+            temperature=1,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+            message_to_send = response.choices[0].message.content
+
+
+
+
 
             print("\n",update.message.chat.type, chat_id, " : ", first_name, " : ", message, "\n")
 
